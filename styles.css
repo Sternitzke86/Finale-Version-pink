@@ -1,35 +1,28 @@
+
 /*
-  Großformatiges, kontrastreiches Design in leuchtendem Gelb. Das Layout
+  Großformatiges, kontrastreiches Design in leuchtendem Pink. Das Layout
   orientiert sich an dem vom Nutzer bereitgestellten Foto: ein farbiges
   Display mit schwarzem Rand und sehr großer Schrift. Für das Layout
-  verwenden wir CSS‑Variablen, sodass die Farbe leicht geändert werden kann.
+  verwenden wir CSS-Variablen, sodass die Farbe leicht geändert werden kann.
 */
 
 :root {
-  --bg-color: #ff2da0; /* knalliges Pink */
+  --bg-color: #ff69b4; /* leuchtendes Pink */
   --text-color: #000; /* Schwarz für optimale Lesbarkeit */
   /* Farbe des Overlays beim Vergrößern von Bildern: leicht transparente
-     Variante des pinken Hintergrunds */
-  --modal-overlay-bg: rgba(255, 45, 160, 0.9);
+     Variante des Hintergrunds */
+  --modal-overlay-bg: rgba(255, 105, 180, 0.9);
 }
 
 body {
   margin: 0;
   padding: 0;
-  /* Der gesamte Hintergrund verwendet die definierte Hintergrundfarbe und füllt
-     den kompletten Bildschirm aus. */
   background: var(--bg-color);
   color: var(--text-color);
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
 }
 
-/* Container für Logo und Eingabefeld. Nutzt die gesamte Höhe des Bildschirms
-   und ordnet die Elemente vertikal an. */
-/*
-  Der Hauptcontainer ordnet Logo, Nachrichtenbereich und Eingabefeld
-  vertikal an. Die Höhe wird durch die Höhe des API‑Key‑Bars reduziert,
-  sodass dieser nicht den Inhalt überlagert. */
 .main-container {
   display: flex;
   flex-direction: column;
@@ -39,8 +32,6 @@ body {
   padding: 1rem;
 }
 
-/* Logo oben links. Die Größe ist relativ, damit es auf unterschiedlichen
-   Bildschirmgrößen ansehnlich bleibt. */
 #logo {
   max-width: 30%;
   height: auto;
@@ -54,16 +45,12 @@ body {
   text-align: center;
 }
 
-/* Untertitel für die zweite Zeile der Überschrift */
-/* Die Unterüberschrift „Kann KI Kunst?" ist doppelt so groß wie der Titel
-   und wird weiß dargestellt. */
 .subtitle {
   font-size: 6rem;
   line-height: 1;
   color: #fff;
 }
 
-/* Der farbige Bereich füllt jetzt die gesamte Breite des Fensters aus. */
 .chat-wrapper {
   width: 100%;
   max-width: none;
@@ -102,7 +89,6 @@ body {
   text-align: right;
 }
 
-/* Bilder in AI‑Antworten sollen groß dargestellt werden */
 .chat-container .ai img {
   max-width: 100%;
   height: auto;
@@ -118,7 +104,6 @@ body {
 
 .input-area input {
   flex: 1;
-  /* Gleiche Schriftgröße wie der Untertitel „Kann KI Kunst?" */
   font-size: 6rem;
   padding: 1rem;
   border: none;
@@ -131,7 +116,6 @@ body {
 }
 
 .input-area button {
-  /* Gleiche Größe wie das Eingabefeld */
   font-size: 6rem;
   padding: 1rem 2rem;
   border: none;
@@ -152,7 +136,6 @@ footer {
   font-size: 1rem;
 }
 
-/* Button zum Ändern des API‑Schlüssels */
 .api-key-btn {
   margin-top: 0.5rem;
   font-size: 1rem;
@@ -169,7 +152,6 @@ footer {
   opacity: 0.8;
 }
 
-/* Modal Styling (reuse from previous design) */
 .modal {
   display: none;
   position: fixed;
@@ -211,17 +193,8 @@ footer {
   cursor: pointer;
 }
 
-/*
-  Vollbild‑Eingabefeld: Das Textfeld füllt die gesamte Seite aus und wirkt
-  nicht wie ein klassisches Eingabefeld. Es hat keine Rahmen, keine
-  Schatten und nutzt dieselbe Hintergrundfarbe wie der restliche Bildschirm.
-  Der Text ist extrem groß, damit Zuschauerinnen und Zuschauer auch aus
-  größerer Entfernung mitlesen können.
-*/
 .full-input {
   width: 100%;
-  /* Eingabefeld steht am unteren Rand der Nachrichtenliste und hat eine
-     feste Höhe. Die Schrift ist sehr groß, damit der Text gut lesbar ist. */
   flex: none;
   min-height: 9rem;
   padding: 0.5rem;
@@ -237,8 +210,6 @@ footer {
   font-family: inherit;
 }
 
-/* Modal für Ergebnisanzeige. Wird nur angezeigt, wenn ein Bild oder eine
-   Fehlermeldung vorliegt. */
 .result-modal {
   display: none;
   position: fixed;
@@ -247,7 +218,6 @@ footer {
   top: 0;
   width: 100%;
   height: 100%;
-  /* Nutzt die farbige Overlay‑Variable statt schwarzem Hintergrund */
   background-color: var(--modal-overlay-bg);
   justify-content: center;
   align-items: center;
@@ -266,14 +236,11 @@ footer {
 .result-modal img {
   max-width: calc(100vw - 40px);
   max-height: calc(100vh - 40px);
-  border: 20px solid #ff2da0;
+  border: 20px solid #ff69b4;
   box-sizing: border-box;
   border-radius: 0;
 }
 
-/* Nachrichtenliste: Dieser Bereich sammelt alle abgeschickten Prompts und
-   die dazugehörigen generierten Bilder. Er wächst dynamisch und ist
-   scrollbar, falls der Inhalt den verfügbaren Platz übersteigt. */
 .messages {
   flex: 1;
   overflow-y: auto;
@@ -284,21 +251,15 @@ footer {
   color: var(--text-color);
 }
 
-/* Einzelne Nachricht: Ein Abstand nach unten trennt die Nachrichten. */
 .message {
   margin-bottom: 1rem;
-  /* Ermöglicht absolute Positionierung für untergeordnete Elemente wie den Download-Button */
-  position: relative;
 }
 
-/* Prompt‑Text innerhalb einer Nachricht. */
 .message .prompt-text {
   margin: 0 0 0.5rem 0;
   white-space: pre-wrap;
 }
 
-/* Bilder innerhalb der Nachrichten: nehmen die verfügbare Breite ein und
-   besitzen abgerundete Ecken. Durch Klick lassen sie sich vergrößern. */
 .message img {
   max-width: 100%;
   height: auto;
@@ -306,65 +267,6 @@ footer {
   cursor: pointer;
 }
 
-/* Download-Button: wird oben rechts über dem generierten Bild platziert */
-.download-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 0.3rem 0.8rem;
-  font-size: 2.5rem;
-  border: none;
-  border-radius: 6px;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  z-index: 5;
-}
-.download-btn:hover {
-  opacity: 0.8;
-}
-
-/* Download‑Button unter dem generierten Bild */
-.download-btn {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1.5rem;
-  font-size: 3rem;
-  border: none;
-  border-radius: 8px;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.download-btn:hover {
-  opacity: 0.8;
-}
-
-/* Download‑Button unter dem generierten Bild */
-.download-btn {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1.5rem;
-  font-size: 3rem;
-  border: none;
-  border-radius: 8px;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.download-btn:hover {
-  opacity: 0.8;
-}
-
-/*
-  Der API‑Key‑Bar wird am unteren Bildschirmrand fixiert. Er enthält ein
-  Passwortfeld zur Eingabe des OpenAI‑Schlüssels und einen Speichern‑Button.
-  Der Hintergrund ist halbtransparent, damit er sich vom restlichen
-  Farbschema absetzt, ohne zu stark abzulenken. Die Farben orientieren sich
-  am gewählten Farbschema (Gelb für Hintergrund, Schwarz für Text). */
 #apiKeyBar {
   position: fixed;
   bottom: 0;
@@ -422,11 +324,10 @@ footer {
 .generated-image {
     max-width: calc(100vw - 40px);
     max-height: calc(100vh - 40px);
-    border: 20px solid #ff2da0;
+    border: 20px solid #ff69b4;
     box-sizing: border-box;
 }
 
-/* VERBESSERT: Zwei Logos nebeneinander links oben - beide gleich groß */
 .logo-bar {
   display: flex;
   align-items: center;
@@ -435,22 +336,16 @@ footer {
 }
 
 .logo-bar .logo {
-  /* Beide Logos haben jetzt die gleiche Höhe - orientiert sich am größeren Logo */
-  height: 120px; /* Erhöht von 80px auf 120px für bessere Sichtbarkeit */
-  width: auto; /* Automatische Breite, um das Seitenverhältnis beizubehalten */
-  /* Zusätzliche Einstellungen für bessere Darstellung */
-  object-fit: contain; /* Stellt sicher, dass das Logo nicht verzerrt wird */
+  height: 120px;
+  width: auto;
+  object-fit: contain;
 }
 
-/* Spezielle Behandlung für das SMS-Logo falls es anders skaliert werden muss */
 .logo-bar .logo:last-child {
-  /* Falls das SMS-Logo spezielle Behandlung braucht, kann hier angepasst werden */
-  height: 120px; /* Gleiche Höhe wie das andere Logo */
+  height: 120px;
 }
 
-/* Ladebalken: horizontale, animierte Streifen in Schwarz‑Weiß */
 .loading-bar {
-  pointer-events: none;
   position: fixed;
   top: 0;
   left: 0;
