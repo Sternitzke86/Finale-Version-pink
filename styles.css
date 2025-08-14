@@ -450,6 +450,7 @@ footer {
 
 /* Ladebalken: horizontale, animierte Streifen in Schwarz‑Weiß */
 .loading-bar {
+  pointer-events: none;
   position: fixed;
   top: 0;
   left: 0;

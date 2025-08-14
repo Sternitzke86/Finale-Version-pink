@@ -47,10 +47,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultModal = document.getElementById('resultModal');
   const resultContent = document.getElementById('resultContent');
   const messagesContainer = document.getElementById('messages');
-  // Ladebalken: Elementreferenz und Hilfsfunktionen
-  const loadingBarElem = document.getElementById('loadingBar');
-  function showLoadingBar() { if (loadingBarElem) loadingBarElem.style.display = 'block'; }
-  function hideLoadingBar() { if (loadingBarElem) loadingBarElem.style.display = 'none'; }
+  // Ladebalken: Elementreferenz und robuste Hilfsfunktionen
+  let loadingBarElem = document.getElementById('loadingBar');
+  function ensureLoadingBar() {
+    if (!loadingBarElem) {
+      loadingBarElem = document.createElement('div');
+      loadingBarElem.id = 'loadingBar';
+      loadingBarElem.className = 'loading-bar';
+      loadingBarElem.style.display = 'none';
+      document.body.prepend(loadingBarElem);
+    } else if (loadingBarElem.parentElement && loadingBarElem.parentElement.tagName.toLowerCase() !== 'body') {
+      // Stelle sicher, dass der Ladebalken direkt unterhalb von <body> hängt,
+      // damit position: fixed überall korrekt funktioniert.
+      document.body.prepend(loadingBarElem);
+    }
+    return loadingBarElem;
+  }
+  function showLoadingBar() { const el = ensureLoadingBar(); el.style.display = 'block'; }
+  function hideLoadingBar() { const el = ensureLoadingBar(); el.style.display = 'none'; }
 
 
   // Warnung, wenn die Seite über file:// geladen wurde
